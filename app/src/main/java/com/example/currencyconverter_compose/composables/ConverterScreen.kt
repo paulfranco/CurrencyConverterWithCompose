@@ -28,9 +28,15 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.LifecycleOwner
+import com.example.currencyconverter_compose.model.Rates
 import com.example.currencyconverter_compose.ui.theme.Oswald_Black
+import com.example.currencyconverter_compose.ui.theme.Purple200
+import com.example.currencyconverter_compose.ui.theme.Purple700
+import com.example.currencyconverter_compose.ui.theme.Teal200
 import com.example.currencyconverter_compose.utils.Constants.Companion.APP_BAR_TITLE
 import com.example.currencyconverter_compose.utils.Constants.Companion.CURRENCY_CODES_LIST
+import com.example.currencyconverter_compose.utils.NetworkResult
+import com.example.currencyconverter_compose.viewmodel.MainViewModel
 import kotlinx.coroutines.launch
 
 @ExperimentalMaterialApi
@@ -65,7 +71,7 @@ fun ConverterScreen(context: Context, mainViewModel: MainViewModel) {
                     items(CURRENCY_CODES_LIST) { item ->
                         Text(
                             text = "${item.currencyCode}\t ${item.countryName}",
-                            color = Label_Color,
+                            color = Purple700,
                             modifier = Modifier
                                 .padding(vertical = 10.dp)
                                 .clickable {
@@ -87,16 +93,16 @@ fun ConverterScreen(context: Context, mainViewModel: MainViewModel) {
                 title = {
                     Text(
                         text = APP_BAR_TITLE,
-                        fontSize = 24.sp,
+                        fontSize = 20.sp,
                         fontFamily = Oswald_Black,
-                        color = if (isDarkMode) White_900 else Orange_700,
+                        color = if (isDarkMode) Purple200 else Teal200,
                         style = TextStyle(
                             fontWeight = FontWeight.Black,
-                            lineHeight = 30.sp
+                            lineHeight = 25.sp
                         )
                     )
                 },
-                backgroundColor = if (isDarkMode) Color.Black else White_900,
+                backgroundColor = if (isDarkMode) Color.Black else Purple200,
                 elevation = 0.dp
             )
         },
@@ -111,7 +117,7 @@ fun ConverterScreen(context: Context, mainViewModel: MainViewModel) {
                 .padding(15.dp)
                 .fillMaxSize()
         ) {
-            Text(text = "From", color = Label_Color)
+            Text(text = "From", color = Purple200)
             Spacer(modifier = Modifier.padding(3.dp))
             Box(modifier = Modifier
                 .fillMaxWidth()
@@ -130,7 +136,7 @@ fun ConverterScreen(context: Context, mainViewModel: MainViewModel) {
 
             Spacer(modifier = Modifier.padding(10.dp))
 
-            Text(text = "To", color = Label_Color)
+            Text(text = "To", color = Purple200)
             Spacer(modifier = Modifier.padding(3.dp))
             Box(modifier = Modifier
                 .fillMaxWidth()
@@ -152,8 +158,8 @@ fun ConverterScreen(context: Context, mainViewModel: MainViewModel) {
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Text(text = "Amount", color = Label_Color)
-                Text(text = fromCurrencyCode.value, color = Label_Color)
+                Text(text = "Amount", color = Purple200)
+                Text(text = fromCurrencyCode.value, color = Purple200)
             }
 
             Spacer(modifier = Modifier.padding(3.dp))
@@ -207,7 +213,7 @@ fun ConverterScreen(context: Context, mainViewModel: MainViewModel) {
                     .fillMaxWidth()
                     .height(50.dp)
             ) {
-                Text("CONVERT", fontSize = 20.sp, color = White_900)
+                Text("CONVERT", fontSize = 20.sp, color = Purple200)
             }
 
             Spacer(modifier = Modifier.padding(30.dp))
@@ -215,7 +221,7 @@ fun ConverterScreen(context: Context, mainViewModel: MainViewModel) {
                 text = convertedAmount.value,
                 modifier = Modifier.fillMaxWidth(),
                 fontSize = 30.sp,
-                color = Orange_700,
+                color = Teal200,
                 style = TextStyle(
                     fontWeight = FontWeight.Bold, textAlign = TextAlign.Center
                 )
@@ -224,7 +230,7 @@ fun ConverterScreen(context: Context, mainViewModel: MainViewModel) {
             Text(
                 text = singleConvertedAmount.value,
                 modifier = Modifier.fillMaxWidth(),
-                color = Label_Color,
+                color = Purple200,
                 style = TextStyle(textAlign = TextAlign.Center)
             )
 

@@ -14,8 +14,8 @@ import androidx.compose.ui.unit.sp
 import com.example.currencyconverter_compose.R
 
 private val DarkColorPalette = darkColors(
-    primary = Purple200,
-    primaryVariant = Purple700,
+    primary = Purple700,
+    primaryVariant = Purple500,
     secondary = Teal200
 )
 
